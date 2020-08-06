@@ -1235,8 +1235,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
-#define AUTO_BED_LEVELING_UBL
+#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -1342,7 +1342,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1351,7 +1351,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LEVEL_BED_CORNERS
+//#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
@@ -1386,7 +1386,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
@@ -1677,7 +1677,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-//#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 WESTERN
 
 /**
  * Info Screen Style (0:Classic, 1:Prusa)
@@ -1773,7 +1773,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER
@@ -1781,7 +1781,7 @@
 // If you have a speaker that can produce tones, enable it here.
 // By default Marlin assumes you have a buzzer with a fixed frequency.
 //
-#define SPEAKER
+//#define SPEAKER
 
 //
 // The duration and frequency for the UI feedback sound.
@@ -2233,7 +2233,7 @@
 // Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
 // which is not as annoying as with the hardware PWM. On the other hand, if this frequency
 // is too low, you should also increment SOFT_PWM_SCALE.
-#define FAN_SOFT_PWM
+//#define FAN_SOFT_PWM
 
 // Incrementing this by 1 will double the software PWM frequency,
 // affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
@@ -2301,13 +2301,13 @@
 #endif
 
 // Support for Adafruit Neopixel LED driver
-//#define NEOPIXEL_LED
+#define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-  #define NEOPIXEL_TYPE   NEO_GRBW // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
+  #define NEOPIXEL_TYPE   NEO_GRB // NEO_GRBW / NEO_GRB - four/three channel driver type (defined in Adafruit_NeoPixel.h)
   #define NEOPIXEL_PIN     4       // LED driving pin
   //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
   //#define NEOPIXEL2_PIN    5
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
+  #define NEOPIXEL_PIXELS 10      // Number of LEDs in the strip, larger of 2 strips if 2 neopixel strips are used
   #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
   #define NEOPIXEL_BRIGHTNESS 127  // Initial brightness (0-255)
   //#define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
