@@ -20,7 +20,7 @@
  *
  */
 #pragma once
-//#define CONFIG_EXAMPLES_DIR "Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0"
+#define CONFIG_EXAMPLES_DIR "Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0"
 /**
  * Configuration.h
  *
@@ -607,7 +607,7 @@
 
 // @section machine
 
-// Uncomment one of these options to enable CoreXY, CoreXZ, or CoreYZ kinematics
+// Enable one of the options below for CoreXY, CoreXZ, or CoreYZ kinematics,
 // either in the usual order or reversed
 //#define COREXY
 //#define COREXZ
@@ -615,6 +615,7 @@
 //#define COREYX
 //#define COREZX
 //#define COREZY
+//#define MARKFORGED_XY  // MarkForged. See https://reprap.org/forum/read.php?152,504042
 
 //===========================================================================
 //============================== Endstop Settings ===========================
@@ -747,7 +748,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {79.84, 79.80, 403.02, 146.00 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80.2, 80.1, 407.50, 146.00 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -796,19 +797,19 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 10.0
-  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_XJERK 5.0
+  #define DEFAULT_YJERK 5.0
   #define DEFAULT_ZJERK  0.3
 
   #define TRAVEL_EXTRA_XYJERK 5.0     // Additional jerk allowance for all travel moves
 
-  //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
+  #define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
-    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits
+    #define MAX_JERK_EDIT_VALUES { 10, 10, 0.6, 10 } // ...or, set your own edit limits
   #endif
 #endif
 
-#define DEFAULT_EJERK    15.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -993,7 +994,8 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -44, -14, -1.10 }
+//#define NOZZLE_TO_PROBE_OFFSET { -44, -14, -1.25 } 
+#define NOZZLE_TO_PROBE_OFFSET { -40.8, -12, -1.20 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1129,12 +1131,12 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 235
-#define Y_BED_SIZE 235
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS -6
+#define Y_MIN_POS -11
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1363,7 +1365,7 @@
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.1   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
-  //#define LEVEL_CENTER_TOO              // Move to the center after the last corner
+  #define LEVEL_CENTER_TOO              // Move to the center after the last corner
 #endif
 
 /**
@@ -1510,7 +1512,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 180
+#define PREHEAT_1_TEMP_HOTEND 200
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
@@ -1689,7 +1691,7 @@
  * Select the language to display on the LCD. These languages are available:
  *
  *   en, an, bg, ca, cz, da, de, el, el_gr, es, eu, fi, fr, gl, hr, hu, it,
- *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro ru, sk, tr, uk, vi, zh_CN, zh_TW, test
+ *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, tr, uk, vi, zh_CN, zh_TW, test
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
  */
@@ -2362,11 +2364,20 @@
   #define NEOPIXEL_PIN     4       // LED driving pin
   //#define NEOPIXEL2_TYPE NEOPIXEL_TYPE
   //#define NEOPIXEL2_PIN    5
-  //#define NEOPIXEL2_INSERIES     // Default behavior is NeoPixel 2 in parallel
-  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip, larger of 2 strips if 2 NeoPixel strips are used
+  #define NEOPIXEL_PIXELS 30       // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
   #define NEOPIXEL_IS_SEQUENTIAL   // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
   #define NEOPIXEL_BRIGHTNESS 127  // Initial brightness (0-255)
   //#define NEOPIXEL_STARTUP_TEST  // Cycle through colors at startup
+
+  // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
+  //#define NEOPIXEL2_SEPARATE
+  #if ENABLED(NEOPIXEL2_SEPARATE)
+    #define NEOPIXEL2_PIXELS      15  // Number of LEDs in the second strip
+    #define NEOPIXEL2_BRIGHTNESS 127  // Initial brightness (0-255)
+    #define NEOPIXEL2_STARTUP_TEST    // Cycle through colors at startup
+  #else
+    //#define NEOPIXEL2_INSERIES      // Default behavior is NeoPixel 2 in parallel
+  #endif
 
   // Use a single NeoPixel LED for static (background) lighting
   //#define NEOPIXEL_BKGD_LED_INDEX  0               // Index of the LED to use
