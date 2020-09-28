@@ -20,7 +20,7 @@
  *
  */
 #pragma once
-#define CONFIG_EXAMPLES_DIR "Creality/Ender-5 Plus/BigTreeTech SKR Mini E3 2.0"
+#define CONFIG_EXAMPLES_DIR "Creality/Ender-5 Plus/BigTreeTech SKR Mini E3 2.0/bugfix-2.0.x"
 /**
  * Configuration.h
  *
@@ -494,10 +494,10 @@
     #define DEFAULT_Kd_LIST { 114.00, 112.0 }
   #else 
    // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-  // Creality Ender-5 Plus
-  #define DEFAULT_Kp 14.72
-  #define DEFAULT_Ki 0.89
-  #define DEFAULT_Kd 61.22
+   // Creality Ender-5 Plus
+  #define DEFAULT_Kp 20.13
+  #define DEFAULT_Ki 1.48
+  #define DEFAULT_Kd 68.57
   #endif
   
 #endif // PIDTEMP
@@ -537,9 +537,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+  #define DEFAULT_bedKp 151.67
+  #define DEFAULT_bedKi 24.89
+  #define DEFAULT_bedKd 616.03
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -797,7 +797,7 @@
   #define DEFAULT_YJERK  8.0
   #define DEFAULT_ZJERK  0.4
 
-  //#define TRAVEL_EXTRA_XYJERK 5.0     // Additional jerk allowance for all travel moves
+  //#define TRAVEL_EXTRA_XYJERK 1.0     // Additional jerk allowance for all travel moves
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
@@ -1193,7 +1193,7 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
- #define FILAMENT_RUNOUT_DISTANCE_MM 25
+ //#define FILAMENT_RUNOUT_DISTANCE_MM 25
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
