@@ -20,7 +20,7 @@
  *
  */
 #pragma once
-//#define CONFIG_EXAMPLES_DIR "Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/2.0.6.1"
+#define CONFIG_EXAMPLES_DIR "Creality/Ender-3 Pro/BigTreeTech SKR Mini E3 2.0/2.0.6.1"
 /**
  * Configuration_adv.h
  *
@@ -1615,7 +1615,7 @@
  *
  * See https://marlinfw.org/docs/features/lin_advance.html for full instructions.
  */
-#define LIN_ADVANCE
+//#define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
   //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
   #define LIN_ADVANCE_K 0.0    // Unit: mm compression per 1mm/s extruder speed
@@ -3087,7 +3087,7 @@
 /**
  * Disable all Volumetric extrusion options
  */
-#define NO_VOLUMETRICS
+//#define NO_VOLUMETRICS
 
 #if DISABLED(NO_VOLUMETRICS)
   /**
